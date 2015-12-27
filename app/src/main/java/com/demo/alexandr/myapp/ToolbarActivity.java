@@ -22,12 +22,17 @@ import com.mikepenz.materialdrawer.model.interfaces.Badgeable;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class ToolbarActivity extends AppCompatActivity {
 
     protected abstract int getLayoutResource();
 
     private Drawer.Result drawerResult = null;
     public Toolbar toolbar;
+
+    public List<View> menuItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +135,19 @@ public abstract class ToolbarActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem searchMenuItem = menu.findItem(R.id.action_search);
+        View searchItemView = findViewById(searchMenuItem.getItemId());
+
+        MenuItem addMenuItem = menu.findItem(R.id.action_add);
+        View addItemView = findViewById(addMenuItem.getItemId());
+
+        MenuItem editMenuItem = menu.findItem(R.id.action_edit);
+        View editItemView = findViewById(editMenuItem.getItemId());
+
+        menuItems.add(searchItemView);
+        menuItems.add(addItemView);
+        menuItems.add(editItemView);
+
         return true;
     }
 
