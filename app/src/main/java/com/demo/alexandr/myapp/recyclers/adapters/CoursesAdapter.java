@@ -1,11 +1,13 @@
 package com.demo.alexandr.myapp.recyclers.adapters;
 
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.demo.alexandr.myapp.R;
+import com.demo.alexandr.myapp.models.TestCourse;
 import com.demo.alexandr.myapp.recyclers.holders.CoursesHolder;
 
 import java.util.ArrayList;
@@ -26,7 +28,10 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesHolder> {
 
     @Override
     public void onBindViewHolder(CoursesHolder coursesHolder, int i) {
-
+        TestCourse course = (TestCourse) mItems.get(i);
+        coursesHolder.courseName.setText(course.getName());
+        coursesHolder.courseCreateDate.setText(course.getCreatedDate());
+        coursesHolder.courseImage.setBackgroundColor(Color.parseColor(course.getColor()));
     }
 
     @Override

@@ -24,11 +24,17 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        courses
+        courses.add(new TestCourse("Philosophy", "created at 20-12-2015", "#FFC5FD01"));
+        courses.add(new TestCourse("History", "created at 10-11-2015", "#FF132CEE"));
+        courses.add(new TestCourse("Modern", "created at 22-09-2014", "#FFE90D0D"));
+        courses.add(new TestCourse("Art", "created at 05-05-2015", "#FF13EE31"));
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_courses);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        CoursesAdapter adapter = new CoursesAdapter(courses);
+        mRecyclerView.setAdapter(adapter);
 
     }
 
