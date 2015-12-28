@@ -27,10 +27,6 @@ public abstract class ToolbarActivity extends AppCompatActivity {
     private Drawer.Result drawerResult = null;
     public Toolbar toolbar;
 
-    public MenuItem searchIcon;
-    public MenuItem editIcon;
-    public MenuItem addIcon;
-
     protected abstract int getLayoutResource();
 
     @Override
