@@ -1,6 +1,7 @@
 package com.demo.alexandr.myapp.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.demo.alexandr.myapp.R;
+import com.demo.alexandr.myapp.constants.StringConstants;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -58,19 +60,12 @@ public class BaseActivity extends AppCompatActivity {
                 ViewGroup viewGroup = (ViewGroup) layoutContainer;
                 viewGroup.removeAllViews();
             } catch (Exception e) {
-                Log.e(ToolbarActivity.class.getSimpleName(), "setContentView", e);
+                Log.e(BaseActivity.class.getSimpleName(), "setContentView", e);
             } finally {
                 ((ViewGroup) layoutContainer).addView(view, params);
             }
         }
     }
-
-
-
-//    @Override
-//    protected int getLayoutResource() {
-//        return R.layout.base_layout;
-//    }
 
     public void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
@@ -124,34 +119,59 @@ public class BaseActivity extends AppCompatActivity {
                     // Обработка клика
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
                         if (drawerItem instanceof Nameable) {
-                            Toast.makeText(BaseActivity.this, BaseActivity.this.getString(((Nameable) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
-                        }
-                        if (drawerItem instanceof Badgeable) {
-                            Badgeable badgeable = (Badgeable) drawerItem;
-                            if (badgeable.getBadge() != null) {
-                                // учтите, не делайте так, если ваш бейдж содержит символ "+"
-                                try {
-                                    int badge = Integer.valueOf(badgeable.getBadge());
-                                    if (badge > 0) {
-                                        drawerResult.updateBadge(String.valueOf(badge - 1), position);
-                                    }
-                                } catch (Exception e) {
-                                    Log.d("test", "Не нажимайте на бейдж, содержащий плюс! :)");
-                                }
+
+                            switch (BaseActivity.this.getString(((Nameable) drawerItem).getNameRes())) {
+                                case StringConstants.INBOX:
+                                    break;
+
+                                case StringConstants.ARCHIVED_COURSES:
+                                    break;
+
+                                case StringConstants.MY_COURSES:
+                                    break;
+
+                                case StringConstants.MY_GROUPS:
+                                    break;
+
+                                case StringConstants.MY_PROFILE:
+                                    startActivity(new Intent(BaseActivity.this, MyProfilePage.class));
+                                    break;
+
+                                case StringConstants.NOTIFICATIONS:
+                                    break;
+
+                                case StringConstants.SHARE:
+                                    break;
                             }
+
+//                            Toast.makeText(BaseActivity.this, BaseActivity.this.getString(((Nameable) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
                         }
+//                        if (drawerItem instanceof Badgeable) {
+//                            Badgeable badgeable = (Badgeable) drawerItem;
+//                            if (badgeable.getBadge() != null) {
+//                                // учтите, не делайте так, если ваш бейдж содержит символ "+"
+//                                try {
+//                                    int badge = Integer.valueOf(badgeable.getBadge());
+//                                    if (badge > 0) {
+//                                        drawerResult.updateBadge(String.valueOf(badge - 1), position);
+//                                    }
+//                                } catch (Exception e) {
+//                                    Log.d("test", "Не нажимайте на бейдж, содержащий плюс! :)");
+//                                }
+//                            }
+//                        }
                     }
                 })
-                .withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {
-                    @Override
-                    // Обработка длинного клика, например, только для SecondaryDrawerItem
-                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-                        if (drawerItem instanceof SecondaryDrawerItem) {
-                            Toast.makeText(BaseActivity.this, BaseActivity.this.getString(((SecondaryDrawerItem) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
-                        }
-                        return false;
-                    }
-                })
+//                .withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {
+//                    @Override
+//                    // Обработка длинного клика, например, только для SecondaryDrawerItem
+//                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+//                        if (drawerItem instanceof SecondaryDrawerItem) {
+//                            Toast.makeText(BaseActivity.this, BaseActivity.this.getString(((SecondaryDrawerItem) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
+//                        }
+//                        return false;
+//                    }
+//                })
                 .build();
     }
 

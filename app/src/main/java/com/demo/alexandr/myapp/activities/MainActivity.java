@@ -35,12 +35,10 @@ public class MainActivity extends BaseActivity {
 
         CoursesAdapter adapter = new CoursesAdapter(courses);
         mRecyclerView.setAdapter(adapter);
-
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
         menu.findItem(R.id.action_edit).setVisible(false);
         return true;
     }
