@@ -3,11 +3,21 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/tool_bar" />
+    <!--<include layout="@layout/tool_bar" />-->
 
-    <TextView
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/recycler_ingredient"-->
+        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginTop="@dimen/tool_bar_top_padding"-->
+        <!--android:divider="@android:color/white"-->
+        <!--android:dividerHeight="0dp"-->
+        <!--android:fadeScrollbars="false"/>-->
+
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/search_icon"/>
+        android:src="@drawable/search_icon"/>
 
 </RelativeLayout>

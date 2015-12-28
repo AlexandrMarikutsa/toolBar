@@ -1,13 +1,14 @@
 package com.demo.alexandr.myapp.activities;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -22,23 +23,54 @@ import com.mikepenz.materialdrawer.model.interfaces.Badgeable;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
-public abstract class ToolbarActivity extends AppCompatActivity {
-
+public class BaseActivity extends AppCompatActivity {
     private Drawer.Result drawerResult = null;
     public Toolbar toolbar;
 
-    public MenuItem searchIcon;
-    public MenuItem editIcon;
-    public MenuItem addIcon;
-
-    protected abstract int getLayoutResource();
+    private View layoutContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutResource());
+        super.setContentView(R.layout.base_layout);
+
+        layoutContainer = findViewById(R.id.containerView);
         initToolbar();
     }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        setContentView(getLayoutInflater().inflate(layoutResID, null));
+    }
+
+    @Override
+    public void setContentView(View view) {
+        if (view != null) {
+            setContentView(view, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+    }
+
+    @Override
+    public void setContentView(View view, ViewGroup.LayoutParams params) {
+        if (layoutContainer != null) {
+            try {
+                ViewGroup viewGroup = (ViewGroup) layoutContainer;
+                viewGroup.removeAllViews();
+            } catch (Exception e) {
+                Log.e(ToolbarActivity.class.getSimpleName(), "setContentView", e);
+            } finally {
+                ((ViewGroup) layoutContainer).addView(view, params);
+            }
+        }
+    }
+
+
+
+//    @Override
+//    protected int getLayoutResource() {
+//        return R.layout.base_layout;
+//    }
 
     public void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
@@ -77,8 +109,8 @@ public abstract class ToolbarActivity extends AppCompatActivity {
                     public void onDrawerOpened(View drawerView) {
                         // Скрываем клавиатуру при открытии Navigation Drawer
                         drawerView.setBackgroundColor(getResources().getColor(R.color.toolbar_color));
-                        InputMethodManager inputMethodManager = (InputMethodManager) ToolbarActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(ToolbarActivity.this.getCurrentFocus().getWindowToken(), 0);
+                        InputMethodManager inputMethodManager = (InputMethodManager) BaseActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        inputMethodManager.hideSoftInputFromWindow(BaseActivity.this.getCurrentFocus().getWindowToken(), 0);
                         toolbar.setVisibility(View.INVISIBLE);
                     }
 
@@ -92,7 +124,7 @@ public abstract class ToolbarActivity extends AppCompatActivity {
                     // Обработка клика
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
                         if (drawerItem instanceof Nameable) {
-                            Toast.makeText(ToolbarActivity.this, ToolbarActivity.this.getString(((Nameable) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BaseActivity.this, BaseActivity.this.getString(((Nameable) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
                         }
                         if (drawerItem instanceof Badgeable) {
                             Badgeable badgeable = (Badgeable) drawerItem;
@@ -115,7 +147,7 @@ public abstract class ToolbarActivity extends AppCompatActivity {
                     // Обработка длинного клика, например, только для SecondaryDrawerItem
                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
                         if (drawerItem instanceof SecondaryDrawerItem) {
-                            Toast.makeText(ToolbarActivity.this, ToolbarActivity.this.getString(((SecondaryDrawerItem) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BaseActivity.this, BaseActivity.this.getString(((SecondaryDrawerItem) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
                         }
                         return false;
                     }

@@ -16,6 +16,10 @@
             </intent-filter>
         </activity>
 
+        <!--<activity-->
+            <!--android:name=".activities.BaseActivity"/>-->
+
+
         <!--<activity android:name=".ToolbarActivity"/>-->
     </application>
 
