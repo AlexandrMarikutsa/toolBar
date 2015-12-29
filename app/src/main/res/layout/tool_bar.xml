@@ -5,4 +5,14 @@
     android:layout_width="match_parent"
     app:theme="@style/AppTheme"
     android:layout_height="?android:actionBarSize"
-    android:background="@color/toolbar_color"/>
+    android:background="@color/toolbar_color">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title Text"
+        android:id="@+id/toolbarTitle"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/toolbar_title_text_size"/>
+</android.support.v7.widget.Toolbar>

@@ -3,11 +3,43 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.demo.alexandr.myapp.utils.CircleImageView
-        android:layout_width="@dimen/header_image_height"
-        android:layout_height="@dimen/header_image_width"
-        android:layout_marginTop="@dimen/header_image_margin_top"
-        android:src="@drawable/user_icon"
-        android:layout_centerHorizontal="true" />
+    <RelativeLayout
+        android:id="@+id/image_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <com.demo.alexandr.myapp.utils.CircleImageView
+            android:id="@+id/user_icon"
+            android:layout_width="@dimen/header_image_height"
+            android:layout_height="@dimen/header_image_width"
+            android:layout_marginTop="@dimen/header_image_margin_top"
+            android:src="@drawable/user_icon"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alex Marikutsa"
+            android:layout_below="@+id/user_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+     </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_profile_button"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/line"
+        android:layout_marginRight="10dp" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        android:layout_below="@+id/image_block" />
 
 </RelativeLayout>

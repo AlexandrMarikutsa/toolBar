@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.demo.alexandr.myapp.R;
 import com.demo.alexandr.myapp.constants.StringConstants;
@@ -27,7 +27,9 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 public class BaseActivity extends AppCompatActivity {
     private Drawer.Result drawerResult = null;
+
     public Toolbar toolbar;
+    public TextView toolbarTitle;
 
     private View layoutContainer;
 
@@ -70,6 +72,8 @@ public class BaseActivity extends AppCompatActivity {
     public void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.black));
+        toolbarTitle = (TextView) findViewById(R.id.toolbarTitle);
+        toolbarTitle.setVisibility(View.INVISIBLE);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

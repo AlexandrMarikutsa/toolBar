@@ -16,4 +16,8 @@
     <string name="drawer_item_my_groups">my groups</string>
     <string name="drawer_item_share">Share</string>
     <string name="drawer_item_archived_courses">Archived Courses</string>
+
+    <string name="toolbar_title_profile">My Profile Page</string>
+
+    <string name="my_profile_button">Edit Pic</string>
 </resources>
