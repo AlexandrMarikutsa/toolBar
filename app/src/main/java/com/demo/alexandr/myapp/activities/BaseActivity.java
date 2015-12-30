@@ -148,34 +148,9 @@ public class BaseActivity extends AppCompatActivity {
                                     break;
                             }
 
-//                            Toast.makeText(BaseActivity.this, BaseActivity.this.getString(((Nameable) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
                         }
-//                        if (drawerItem instanceof Badgeable) {
-//                            Badgeable badgeable = (Badgeable) drawerItem;
-//                            if (badgeable.getBadge() != null) {
-//                                // учтите, не делайте так, если ваш бейдж содержит символ "+"
-//                                try {
-//                                    int badge = Integer.valueOf(badgeable.getBadge());
-//                                    if (badge > 0) {
-//                                        drawerResult.updateBadge(String.valueOf(badge - 1), position);
-//                                    }
-//                                } catch (Exception e) {
-//                                    Log.d("test", "Не нажимайте на бейдж, содержащий плюс! :)");
-//                                }
-//                            }
-//                        }
                     }
                 })
-//                .withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {
-//                    @Override
-//                    // Обработка длинного клика, например, только для SecondaryDrawerItem
-//                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-//                        if (drawerItem instanceof SecondaryDrawerItem) {
-//                            Toast.makeText(BaseActivity.this, BaseActivity.this.getString(((SecondaryDrawerItem) drawerItem).getNameRes()), Toast.LENGTH_SHORT).show();
-//                        }
-//                        return false;
-//                    }
-//                })
                 .build();
     }
 

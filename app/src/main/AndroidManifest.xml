@@ -21,6 +21,10 @@
 
 
         <activity android:name=".activities.MyProfilePage"/>
+
+        <activity android:name=".activities.PDFActivity"/>
+
+        <activity android:name="com.pspdfkit.ui.PSPDFAppCompatActivity" android:windowSoftInputMode="adjustNothing" />
     </application>
 
 </manifest>

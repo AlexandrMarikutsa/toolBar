@@ -1,10 +1,12 @@
 package com.demo.alexandr.myapp.activities;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import com.demo.alexandr.myapp.R;
 import com.demo.alexandr.myapp.models.TestCourse;
@@ -45,5 +47,17 @@ public class MainActivity extends BaseActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.action_edit).setVisible(false);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_add) {
+            startActivity(new Intent(MainActivity.this, PDFActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
